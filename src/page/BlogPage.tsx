@@ -43,7 +43,7 @@ const BlogPage = () => {
 
     useEffect(() => {
         async function getSummary() {
-            const response = await axios.post("http://localhost:5000/summarize", { text: content })
+            const response = await axios.post("https://summary-ucrz.onrender.com/summarize", { text: blogPost.content })
             const data = response.data
             setSummary(data.text)
         }
