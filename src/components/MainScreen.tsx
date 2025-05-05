@@ -57,7 +57,7 @@ function Posts({name,url,heading,subheading,date,likes,comments}:{
         <div className='flex-1'>
           <a href='/blog' >
             <h2 style={{ letterSpacing: '-0.016em;' }}
-              className='text-[24px] leading-[30px] font-[700]'
+              className='text-[24px] leading-[30px] font-[700] text-[#242424]'
             >{heading}</h2>
             <div className='pt-[8px]'>
               <h3 className='text-[16px] font-gt-super font-[400] text-[#6B6B6B] leading-[20px]'>{subheading}</h3>

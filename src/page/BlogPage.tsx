@@ -92,7 +92,7 @@ function Header({ onAIButtonClick, showAIButton, onBackClick }: { onAIButtonClic
             </div>
             <div className='flex justify-between pr-10'>
                 <div className='flex gap-[12px] items-center'>
-                    <img alt="Maxim Gorin" className='rounded-full ' src={blogPost.url} width="32" height="32" loading="lazy" />
+                    <img src={blogPost.url} alt="Maxim Gorin" className='rounded-full ' width="32" height="32" loading="lazy" />
                     <div className='flex gap-[12px] items-center'>
                         <span className='text-[#242424] text-[14px]'>{blogPost.name}</span>
                         <div className='cursor-pointer'>
