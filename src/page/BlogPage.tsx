@@ -5,8 +5,6 @@ import clsx from "clsx";
 import axios from 'axios';
 import { blogPost } from '../utils/constants';
 
-
-
 const BlogPage = () => {
     const [showAIContent, setShowAIContent] = useState(false);
     const [isScanning, setIsScanning] = useState(false);
@@ -16,7 +14,7 @@ const BlogPage = () => {
         let isMounted = true;
         async function getSummary() {
             try {
-                const response = await axios.post("http://localhost:5000/summarize", { text: blogPost.content });
+                const response = await axios.post("https://summary-ucrz.onrender.com/summarize", { text: blogPost.content });
                 if (isMounted) {
                     console.log(response.data)
                     setSummary(response.data);
@@ -31,15 +29,7 @@ const BlogPage = () => {
         };
     }, [showAIContent]);
 
-    useEffect(() => {
-        async function getSummary() {
-            const response = await axios.post("https://summary-ucrz.onrender.com/summarize", { text: blogPost.content })
-            const data = response.data
-            setSummary(data.text)
-        }
-        getSummary();
 
-    }, [])
     useEffect(() => {
         if (isScanning) {
             // Lock scroll
