@@ -5,16 +5,6 @@ import clsx from "clsx";
 import axios from 'axios';
 import { blogPost } from '../utils/constants';
 
-let content = `reative pursuits like writing, art, or music aren’t just things we do. For a lot of us, creativity is an entire lifestyle, a way of existing and taking up space in the world around us.
-
-But if you’re anything like me, it’s all too easy to lose your way, especially if your creativity is also how you earn a living. Life gets busy. Stress levels rise and inspiration becomes ever harder to come by. Sometimes it’s really easy to forget why you even wanted to be creative in the first place.
-
-Although it took me years to really get the memo, it’s essential to pause, recalibrate, and check in with yourself once in a while. Not from a critical angle but from one of genuine curiosity and self-compassion.
-
-Admittedly, I’m guilty of not doing this anywhere near as often as I know I should, but I’m working on it. Asking myself some simple questions once or twice a year and exploring those answers in whatever way makes sense at the time has helped. So, if you’re someone who ever creates something out of nothing and calls it art, these eight questions are for you.
-
-1. What do I create when…
-`;
 
 
 const BlogPage = () => {
