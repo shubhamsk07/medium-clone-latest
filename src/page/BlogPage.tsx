@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import clsx from "clsx";
 import axios from 'axios';
+import { blogPost } from '../utils/constants';
 
 let content = `reative pursuits like writing, art, or music aren’t just things we do. For a lot of us, creativity is an entire lifestyle, a way of existing and taking up space in the world around us.
 
@@ -25,7 +26,7 @@ const BlogPage = () => {
         let isMounted = true;
         async function getSummary() {
             try {
-                const response = await axios.post("https://summary-ucrz.onrender.com/summarize", { text: content });
+                const response = await axios.post("http://localhost:5000/summarize", { text: blogPost.content });
                 if (isMounted) {
                     console.log(response.data)
                     setSummary(response.data);
@@ -106,14 +107,14 @@ function Header({ onAIButtonClick, showAIButton, onBackClick }: { onAIButtonClic
             <div>
                 <h1 style={{ letterSpacing: '-0.011em' }}
                     className='leading-[52px] mt-[1.19em] text-[42px] font-bold text-[#242424] mb-[32px]'>
-                    8 Questions Every Creative Should Ask Themselves at Least Once a Year
+                {blogPost.heading}
                 </h1>
             </div>
             <div className='flex justify-between pr-10'>
                 <div className='flex gap-[12px] items-center'>
-                    <img alt="Maxim Gorin" className='rounded-full ' src="https://miro.medium.com/v2/resize:fill:40:40/1*UVQjiN0-zoWW0jO63B6jew.png" width="32" height="32" loading="lazy" />
+                    <img alt="Maxim Gorin" className='rounded-full ' src={blogPost.url} width="32" height="32" loading="lazy" />
                     <div className='flex gap-[12px] items-center'>
-                        <span className='text-[#242424] text-[14px]'>Maxim Gorin</span>
+                        <span className='text-[#242424] text-[14px]'>{blogPost.name}</span>
                         <div className='cursor-pointer'>
                             <button
                                 onClick={handleFollowClick}
@@ -137,7 +138,7 @@ function Header({ onAIButtonClick, showAIButton, onBackClick }: { onAIButtonClic
                         </div>
                         <span className='px-[8px] mt-[1px] text-[#6B6B6B] h-full'>.</span>
                         <div className='text-[#6B6B6B] flex items-center text-[14px]'>
-                            3 days ago
+                            {blogPost.date}
                         </div>
                     </div>
                 </div>
@@ -173,11 +174,11 @@ function FeatureBar() {
             <div className='flex'>
                 <div className='flex items-center w-[74px]'>
                     <LightClap />
-                    <span className='text-[#6B6B6B] text-[13px]'>4</span>
+                    <span className='text-[#6B6B6B] text-[13px]'>{blogPost.likes}</span>
                 </div>
                 <div className='flex items-center'>
                     <MessageOutlineSvg />
-                    <span className='text-[#6B6B6B] text-[13px]'>12</span>
+                    <span className='text-[#6B6B6B] text-[13px]'>{blogPost.comments}</span>
                 </div>
             </div>
             <div className='flex items-center'>
@@ -193,7 +194,7 @@ function FeatureBar() {
 function Content() {
     return (
         <div className="font-serif text-[20px] h-screen mt-[1.70em] max-w-[680px] mx-auto fade-in-up">
-           {content}
+           {blogPost.content}
         </div>
     );
 }
@@ -202,7 +203,7 @@ const AIContent = ({ summary }: { summary: string }) => {
     return (
         <div className='text-[20px] font-serif mt-[1.70em]  max-w-[680px] mx-auto fade-in-up'>
             <h2 className="  text-xl font-bold text-center mb-5">AI Summary</h2>
-            <p className="text-md mt-2">{summary}</p>
+            <p className="text-md mt-2">{summary} {!summary && 'In today’s fast-paced creative world, it’s easy to lose sight of purpose and passion. This article encourages creatives to pause annually and reflect deeply on their journey by asking eight essential questions about inspiration, fulfillment, values, and growth. Through honest self-inquiry, artists can reconnect with their authentic creative voice, avoid burnout, and rediscover joy in the process—not just the outcome. The piece emphasizes that staying true to oneself is more meaningful than chasing perfection or external validation.'} </p>
 
         </div>
     );

@@ -1,4 +1,5 @@
 
+import { blogPost } from '../utils/constants';
 import ScrollableTabs from './ScollTab';
 
 const MainScreen = () => {
@@ -6,7 +7,6 @@ const MainScreen = () => {
     <div className='max-w-[calc(100%_-_368px)]  flex-1 pt-[40px]  flex-col'>
       <div className='flex justify-center'>
         <ScrollableTabs />
-
       </div>
       <BlogPosts />
       <BlogPosts />
@@ -21,44 +21,61 @@ export default MainScreen
 
 function BlogPosts() {
   return <div className='flex  w-full max-w-[680px] mx-auto pt-[50px]  '>
-    <Posts />
+   <Posts
+  name={blogPost.name}
+  url={blogPost.url}
+  heading={blogPost.heading}
+  subheading={blogPost.subheading}
+  date={blogPost.date}
+  likes={blogPost.likes}
+  comments={blogPost.comments}
+/>
   </div>
 }
 
-function Posts() {
+
+function Posts({name,url,heading,subheading,date,likes,comments}:{
+  name:string
+  url:string,
+  heading:string,
+  subheading:string,
+  date:string,
+  likes:number,
+  comments:number
+}) {
   return <div className='flex w-full border-b border-[#F2F2F2] pb-[20px]'>
     <div className='flex-1 flex-col w-full'>
       <div className='flex gap-2 pb-[16px]'>
-        <img src='https://miro.medium.com/v2/resize:fill:25:25/1*KvV0r5fTUy3oX3O26HFigQ.jpeg' alt='profile image'
+        <img src={url} alt='profile image'
           width={20}
           className='rounded-full'
           height={10}
         />
-        <h2 className='text-[13px]'>Shannon Hilson</h2>
+        <h2 className='text-[13px]'>{name}</h2>
       </div>
       <div className='flex w-full '>
         <div className='flex-1'>
           <a href='/blog' >
             <h2 style={{ letterSpacing: '-0.016em;' }}
               className='text-[24px] leading-[30px] font-[700]'
-            >8 Questions Every Creative Should Ask Themselves at Least Once a Year</h2>
+            >{heading}</h2>
             <div className='pt-[8px]'>
-              <h3 className='text-[16px] font-gt-super font-[400] text-[#6B6B6B] leading-[20px]'>Holding space to define creative fulfillment on your own terms keeps you free as a creator</h3>
+              <h3 className='text-[16px] font-gt-super font-[400] text-[#6B6B6B] leading-[20px]'>{subheading}</h3>
             </div>
           </a>
           <div className='pt-[10px] flex justify-between'>
             <div className='flex text-[13px] text-[#6B6B6B] gap-[16px] items-center '>
               <div>
-                <span>Jul 26, 2016</span>
+                <span>{date}</span>
               </div>
               <div className='flex gap-[16px]'>
                 <div className='flex items-center gap-1'>
                   <ClapSvg />
-                  <span>27K</span>
+                  <span>2{likes}K</span>
                 </div>
                 <div className='flex items-center gap-1'>
                   <MessageSvg />
-                  <span>446</span>
+                  <span>{comments}</span>
                 </div>
               </div>
             </div>
